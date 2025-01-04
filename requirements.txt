@@ -1,0 +1,7 @@
+ale-py
+gymnasium
+gymnasium[other]
+numpy
+torch
+tensorboard
+stable_baselines3
