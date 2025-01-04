@@ -37,7 +37,7 @@ EPS_DECAY = 310000
 LEARNING_STEPS = 50000000
 GAMMA = 0.99
 LEARNING_START = 80000
-TAU = 0.01
+TAU = 0.1
 
 
 def optimize_model(memory: AdvancedReplayMemory, steps: int):
@@ -75,11 +75,10 @@ def select_action(state: np.array, steps_done: int):
 
 def make_env(env_id: str, run_name: str):
     def thunk():
-        env = gym.make(env_id, render_mode="rgb_array")
+        env = gym.make(env_id, render_mode="rgb_array", frameskip=4)
         env = gym.wrappers.RecordVideo(env, f"videos/{run_name}")
         env = gym.wrappers.RecordEpisodeStatistics(env)
         env = NoopResetEnv(env, noop_max=30)
-        env = MaxAndSkipEnv(env, skip=4)
         env = gym.wrappers.ResizeObservation(env, (84, 84))
         env = gym.wrappers.GrayscaleObservation(env)
         env = gym.wrappers.FrameStackObservation(env, 4)

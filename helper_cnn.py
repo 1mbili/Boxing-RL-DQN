@@ -3,7 +3,6 @@ Utility functions for the DQN algorithm
 """
 
 
-from dataclasses import dataclass
 from collections import namedtuple, deque
 from typing import NamedTuple
 
@@ -33,7 +32,6 @@ class ReplayMemory:
     def __len__(self):
         return len(self.memory)
 
-@dataclass
 class ReplayBufferSamples(NamedTuple):
     """ A class to represent the samples from the replay buffer """
     states: th.Tensor
